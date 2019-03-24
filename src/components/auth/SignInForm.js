@@ -9,11 +9,11 @@ class SignInForm extends Component {
         <h2>Sign In</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Email</label>
+            <label>email</label>
             <Field name='email' component='input' type='text' />
           </div>
           <div>
-            <label>Password</label>
+            <label>password</label>
             <Field name='password' component='input' type='password' />
           </div>
           <div>

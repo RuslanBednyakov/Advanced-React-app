@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 import SignInForm from '../auth/SignInForm'
 import SignUpForm from '../auth/SignUpForm'
-import Loader from '../Loader'
+import Loader from '../common/Loader'
 import {signUp, moduleName} from '../../ducks/auth'
 
 
