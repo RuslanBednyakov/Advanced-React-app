@@ -4,6 +4,7 @@ import store from './redux'
 import Root from './components/Root'
 import { ConnectedRouter } from 'connected-react-router'
 import history from './history'
+import './config'
 
 class App extends Component {
   render() {
