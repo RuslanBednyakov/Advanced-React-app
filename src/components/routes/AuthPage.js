@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import SignInForm from '../auth/SignInForm'
 import SignUpForm from '../auth/SignUpForm'
 import Loader from '../common/Loader'
-import {signUp, moduleName} from '../../ducks/auth'
+import {signUp, signIn, moduleName} from '../../ducks/auth'
 
 
 class AuthPage extends Component {
@@ -23,11 +23,11 @@ class AuthPage extends Component {
     );
   }
 
-  handleSignIn = (values) => console.log('SignIn', values)
+  handleSignIn = ({email, password}) => this.props.signIn(email, password)
 
   handleSignUp = ({email, password}) => this.props.signUp(email, password)
 }
 
 export default connect(state => ({
   loading: state[moduleName].loading
-}), {signUp})(AuthPage);
+}), {signUp, signIn})(AuthPage);

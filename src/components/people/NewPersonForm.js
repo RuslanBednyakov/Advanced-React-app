@@ -5,10 +5,16 @@ import ErrorField from '../auth/ErrorField'
 
 class NewPersonForm extends Component {
 
+  onSubmit = (data) => {
+    const { handleSubmit, reset } = this.props;
+    handleSubmit(data)
+    reset();
+  }
+
   render() {
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit}>
+        <form onSubmit={this.onSubmit}>
           <Field name='firstName' component={ErrorField} type='text' />
           <Field name='lastName' component={ErrorField} type='text' />
           <Field name='email' component={ErrorField} type='text' />
