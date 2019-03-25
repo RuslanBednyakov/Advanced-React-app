@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 import {appName} from '../config'
 import {Record} from 'immutable'
-import {all, take, call, put} from 'redux-saga/effects'
+import {all, take, call, put, cps} from 'redux-saga/effects'
 
 const ReducerRecord = Record({
   user: null,
@@ -22,7 +22,7 @@ export default function reducer(state = new ReducerRecord(), action) {
     case SIGN_UP_REQUEST:
       return state.set('loading', true);
 
-    case SIGN_UP_SUCCESS:
+    case SIGN_IN_SUCCESS:
       return state
         .set('loading', false)
         .set('user', payload.user)
@@ -69,8 +69,22 @@ export const signUpSaga = function * () {
   }
 }
 
+export const watchStatusChange = function * () {
+  const auth = firebase.auth();
+  
+  try {
+    yield cps([auth, auth.onAuthStateChanged])
+  } catch (user) {
+    yield put({
+      type: SIGN_IN_SUCCESS,
+      payload: {user}
+    })
+  }
+}
+
 export const saga = function * () {
   yield all([
-    signUpSaga()
+    signUpSaga(),
+    watchStatusChange()
   ])
 }
