@@ -5,6 +5,7 @@
   "dependencies": {
     "connected-react-router": "^6.3.2",
     "email-validator": "^2.0.4",
+    "enzyme": "^3.9.0",
     "firebase": "^5.9.1",
     "history": "^4.9.0",
     "immutable": "^4.0.0-rc.12",
@@ -16,11 +17,13 @@
     "react-router-dom": "^5.0.0",
     "react-router-redux": "^4.0.8",
     "react-scripts": "2.1.8",
+    "react-test-renderer": "^16.8.5",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
