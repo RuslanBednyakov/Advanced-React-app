@@ -2,7 +2,7 @@ import firebase from 'firebase'
 import {appName} from '../config'
 import {Record} from 'immutable'
 import {all, take, call, put, cps, takeEvery} from 'redux-saga/effects'
-// import {push} from 'react-router-redux'
+import {push} from 'react-router-redux'
 
 export const ReducerRecord = Record({
   user: null,
@@ -118,7 +118,6 @@ export const signInSaga = function * () {
 
 export const watchStatusChange = function * () {
   const auth = firebase.auth();
-  // while(true) {
     try {
       yield cps([auth, auth.onAuthStateChanged])
     } catch (user) {
@@ -127,7 +126,6 @@ export const watchStatusChange = function * () {
         payload: {user}
       })
     }
-  // }
 }
 
 export const signOutSaga = function * () {
@@ -138,7 +136,7 @@ export const signOutSaga = function * () {
     yield put({
       type: SIGN_OUT_SUCCESS
     })
-    // yield put(push('/auth/signin'))
+    yield put(push('/auth/signin'))
   } catch (_) {
 
   } 

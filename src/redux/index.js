@@ -6,6 +6,7 @@ import createSagaMiddleware from 'redux-saga'
 import history from '../history'
 import rootSaga from './saga'
 
+
 const sagaMiddleware = createSagaMiddleware();
 const enchancer = applyMiddleware(sagaMiddleware, routerMiddleware(history), logger);
 

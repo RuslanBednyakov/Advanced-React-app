@@ -100,7 +100,7 @@ it('should sign out user', () => {
     type: SIGN_OUT_SUCCESS
   }))
 
-  // expect(put(push('auth/signin')))
+  expect(put(push('auth/signin')))
 })
 
 // Reducer Tests

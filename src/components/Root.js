@@ -8,6 +8,7 @@ import PersonPage from './routes/PersonPage'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {moduleName, signOut} from '../ducks/auth'
+import EventsPage from './routes/EventsPage'
 
 class Root extends Component {
   render() {
@@ -21,6 +22,7 @@ class Root extends Component {
         <ProtectedRoute path='/admin' component={AdminPage}/>
         <Route path='/auth' component={AuthPage}/>
         <Route path='/people' component={PersonPage}/>
+        <Route path='/events' component={EventsPage}/>
       </div>
     );
   }
