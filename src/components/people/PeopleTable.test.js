@@ -1,6 +1,9 @@
 import React from 'react'
-import {mount} from 'enzyme'
+import {mount, configure} from 'enzyme'
 import {PeopleTable} from './PeopleTable'
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 function generateList(length) {
     const arr = []
