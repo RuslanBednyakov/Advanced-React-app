@@ -1,6 +1,6 @@
 import {appName} from '../config'
 import {Record, OrderedMap} from 'immutable'
-import {put, call, takeEvery, all, select} from 'redux-saga/effects'
+import {put, call, takeEvery, all, select, delay, fork, spawn, cancel, cancelled} from 'redux-saga/effects'
 import {fbDataToEntities} from './utils'
 import firebase from 'firebase'
 import {createSelector} from 'reselect'
@@ -147,8 +147,28 @@ export const addEventSaga = function * (action) {
 
 }
 
+export const backgroundSyncSaga = function * () {
+  try {
+    while (true) {
+      yield call(fetchAllSaga)
+      yield delay(2000)
+    }
+  } finally {
+    if (yield cancelled()) {
+      console.log('----', 'cancelled sync saga')
+    }
+  }
+}
+
+export const cancellableSync = function * () {
+  const task = yield fork(backgroundSyncSaga)
+  yield delay(6000)
+  yield cancel(task)
+}
+
 export const saga = function * () {
-  console.log('saga-all')
+  yield spawn(cancellableSync)
+
   yield all([
     takeEvery(ADD_PERSON_REQUEST, addPersonSaga),
     takeEvery(FETCH_ALL_REQUEST, fetchAllSaga),
